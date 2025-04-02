@@ -3,5 +3,7 @@ const router=app.Router();
 const usercontroller=require(`../../controller/userController`);
 
 
-router.post(`/users`,usercontroller.create);
+router.post(`/signup`,usercontroller.create);
+router.post(`/signin`,usercontroller.signin);
+router.get(`/user/:id`,usercontroller.getuser);
 module.exports=router;
