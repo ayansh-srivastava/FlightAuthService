@@ -1,8 +1,7 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const {Model} = require('sequelize');
 const bcrypt = require('bcrypt');
+const model=require('./index');
 const saltRounds = 10;
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -14,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
+    
   }
   User.init({
     email: {
