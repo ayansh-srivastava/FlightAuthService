@@ -54,6 +54,15 @@ class UserServices{
             throw error;
         }
     }
+    async isAdmin(id) {
+        try {
+            return await UserRepo.isAdmin(id);
+        } catch (error) {
+            console.error("Something went wrong in password comparison:", error);
+            throw error;
+        }
+    }
+    
     
 
 }

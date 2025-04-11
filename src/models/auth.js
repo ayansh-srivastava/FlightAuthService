@@ -13,13 +13,19 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
+  Auth.associate = function(models) {
+    Auth.belongsToMany(models.User, {
+      through: 'user_auth',
+      as: 'users'
+    });
+  };
   Auth.init({
     name: {
       type:DataTypes.STRING,
       allownull:false}
   }, {
     sequelize,
-    modelName: 'auth',
+    modelName: 'Auth',
   });
   return Auth;
 };

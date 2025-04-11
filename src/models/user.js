@@ -34,6 +34,12 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'User',
   });
+  User.associate = function(models) {
+    User.belongsToMany(models.Auth, {
+      through: 'user_auth',
+      as: 'roles'
+    });
+  };
   User.beforeCreate(async (user, options) => {
     if (user.password) {
       user.password = await bcrypt.hash(user.password, saltRounds);

@@ -41,8 +41,29 @@ const signin=async (req,res) => {
         console.log(error);
     }
 }
+const isAdmin=async (req,res) => {
+    try {
+        const response=await userservices.isAdmin(req.body.id)
+        return res.status(200).json({
+            data:response,
+            success:true,
+            err:{},
+            msg:'Successfully fetched whether user is admin or not'
+        })
+    } catch (error) {
+        return res.status(500).json(
+            {
+                data:{},
+                success:false,
+                err:{error},
+                msg:'Something went wrong'
+            }   
+        )
+    }
+}
 module.exports={
     create,
     getuser,
-    signin
+    signin,
+    isAdmin
 }

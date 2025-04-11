@@ -12,7 +12,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('People', [{
+    await queryInterface.bulkInsert('Auths', [{
         name: 'ADMIN',
         createdAt: new Date(),
         updatedAt: new Date()

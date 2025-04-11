@@ -1,5 +1,5 @@
 const { where } = require('sequelize');
-const {User} = require('../models/index')
+const {User,Auth} = require('../models/index')
 class UserRepo{
     async create(data){
         try {
@@ -33,5 +33,22 @@ class UserRepo{
             console.log(error);
         }
     }
+    async isAdmin(id){
+        try {
+            const user=await User.findByPk(id,{
+                include: {
+                    model: Auth,
+                    as: 'roles' // must match the alias defined in User.associate
+                }
+            });
+            console.log(user)
+            const isAdmin = user.roles.some(role => role.name === 'ADMIN');
+            return {isAdmin};
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+    
 }
 module.exports=UserRepo
